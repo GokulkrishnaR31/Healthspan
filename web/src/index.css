@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Gayathri:wght@400;700&family=Hind+Siliguri:wght@400;500;600;700&family=Manjari:wght@400;700&family=Mukta+Malar:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --elder-green: #10B981;
+    --elder-green-dark: #059669;
+    --elder-green-light: #ECFDF5;
+    --caregiver-teal: #0D9488;
+    --admin-indigo: #6366F1;
+    color-scheme: light dark;
+  }
+
+  body {
+    font-family: 'Outfit', 'Plus Jakarta Sans', 'Mukta Malar', 'Noto Sans Tamil', 'Hind Siliguri', 'Noto Sans Devanagari', 'Manjari', 'Gayathri', 'Noto Sans Telugu', 'Noto Sans Kannada', sans-serif;
+    background-color: #F8FAFC;
+    color: #0F172A;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  /* Modern Language-Specific Stylish Font Overrides */
+  [data-lang="ta"], .font-tamil {
+    font-family: 'Mukta Malar', 'Noto Sans Tamil', 'Outfit', sans-serif !important;
+    letter-spacing: 0.01em;
+  }
+
+  [data-lang="bn"], .font-bengali {
+    font-family: 'Hind Siliguri', 'Noto Sans Bengali', 'Outfit', sans-serif !important;
+  }
+
+  [data-lang="mr"], [data-lang="hi"], .font-devanagari {
+    font-family: 'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif !important;
+  }
+
+  [data-lang="ml"], .font-malayalam {
+    font-family: 'Manjari', 'Gayathri', 'Noto Sans Malayalam', sans-serif !important;
+  }
+
+  html.dark body {
+    background-color: #080D1A;
+    color: #F8FAFC;
+  }
+
+  /* Custom Sleek Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 9999px;
+  }
+  html.dark ::-webkit-scrollbar-thumb {
+    background: #334155;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   ADVANCED GLASSMORPHISM & DEPTH CARDS
+───────────────────────────────────────────────────────────── */
+.glass-card-premium {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 0 1px 1px rgba(0, 0, 0, 0.02);
+  border-radius: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html.dark .glass-card-premium {
+  background: rgba(15, 23, 42, 0.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.35), 0 0 1px 1px rgba(255, 255, 255, 0.05);
+  border-radius: 1.5rem;
+}
+
+.glass-card-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.08), 0 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+html.dark .glass-card-premium:hover {
+  box-shadow: 0 20px 45px -5px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   GLOWING AURAS & VIBRANT SHADOWS
+───────────────────────────────────────────────────────────── */
+.glow-emerald {
+  box-shadow: 0 8px 24px -4px rgba(16, 185, 129, 0.3);
+}
+.glow-rose {
+  box-shadow: 0 8px 24px -4px rgba(244, 63, 94, 0.3);
+}
+.glow-cyan {
+  box-shadow: 0 8px 24px -4px rgba(6, 182, 212, 0.3);
+}
+.glow-amber {
+  box-shadow: 0 8px 24px -4px rgba(245, 158, 11, 0.3);
+}
+.glow-indigo {
+  box-shadow: 0 8px 24px -4px rgba(99, 102, 241, 0.3);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   KEYFRAME ANIMATIONS
+───────────────────────────────────────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+    filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.6));
+  }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse-ring-glow {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.7);
+  }
+  70% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 18px rgba(244, 63, 94, 0);
+  }
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(244, 63, 94, 0);
+  }
+}
+.animate-mic-pulse {
+  animation: pulse-ring-glow 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+.animate-float-gentle {
+  animation: float-gentle 3s ease-in-out infinite;
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer-sweep 2.5s infinite;
+}
+
+/* Tactile Senior Touch Button */
+.senior-touch-btn {
+  min-height: 52px;
+  border-radius: 1.25rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  user-select: none;
+  cursor: pointer;
+}
+.senior-touch-btn:active {
+  transform: scale(0.96);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SILENT BACKGROUND AUTOMATED TRANSLATION ENGINE
+───────────────────────────────────────────────────────────── */
+#google_translate_element,
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+.goog-te-gadget,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   AI ASSISTANT MASCOT HOVER & LIVING IDLE ANIMATIONS
+───────────────────────────────────────────────────────────── */
+@keyframes mascot-idle-wave {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0px);
+  }
+  25% {
+    transform: rotate(3deg) translateY(-3px);
+  }
+  50% {
+    transform: rotate(0deg) translateY(-1px);
+  }
+  75% {
+    transform: rotate(-3deg) translateY(-4px);
+  }
+}
+
+.animate-mascot-idle {
+  animation: mascot-idle-wave 4s ease-in-out infinite;
+}
+
+@keyframes mascot-ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(20, 184, 166, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0);
+  }
+}
+
+.animate-mascot-ripple {
+  animation: mascot-ripple 2.5s infinite;
+}
+

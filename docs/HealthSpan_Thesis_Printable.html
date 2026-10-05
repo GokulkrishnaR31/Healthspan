@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HealthSpan - Complete Project Thesis Report</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({ startOnLoad: true, theme: 'default' });</script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.65;
+      color: #1e293b;
+      background: #f8fafc;
+      padding: 40px;
+      margin: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 60px 80px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Outfit', sans-serif;
+      color: #0f172a;
+    }
+    h1 { font-size: 2.2rem; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 8px; }
+    h2 { font-size: 1.5rem; font-weight: 700; margin-top: 36px; color: #1e3a8a; }
+    h3 { font-size: 1.2rem; font-weight: 700; margin-top: 24px; color: #0284c7; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 14px;
+    }
+    th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+    }
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+    }
+    .print-btn:hover { background: #1d4ed8; }
+    pre {
+      background: #f1f5f9;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      overflow-x: auto;
+    }
+    @media print {
+      .print-btn { display: none; }
+      body { background: white; padding: 0; }
+      .container { box-shadow: none; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Save as PDF / Print</button>
+
+<div class="container">
+  <h1>HealthSpan: Personalized Indian Geriatric Nutrition & Longevity System</h1>
+  <p style="font-size: 1.1rem; color: #64748b; font-weight: 600;">Phase-I Final Year Project Thesis & Technical Report</p>
+
+  <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 30px 0;"/>
+
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><b>Chapter 1:</b> Introduction & Problem Definition</li>
+    <li><b>Chapter 2:</b> Literature Review & State-of-the-Art</li>
+    <li><b>Chapter 3:</b> System Architecture & Requirements Analysis</li>
+    <li><b>Chapter 4:</b> Methodology & Algorithm Design</li>
+    <li><b>Chapter 5:</b> Results, User Interface & Discussion</li>
+    <li><b>Chapter 6:</b> Conclusion, Limitations & Future Scope</li>
+    <li><b>Appendix I:</b> Turnitin Integrity Overview & Plagiarism Certificate</li>
+  </ul>
+
+  <h2>Chapter 1: Introduction & Problem Definition</h2>
+  <p>The aging demographic in India represents a rapidly expanding segment of the population, projected to reach nearly 20% of the national total by 2050. Geriatric individuals face unique physiological challenges, including declining basal metabolic rates, diminished dentition/chewability, reduced thirst sensitivity, and progressive micronutrient deficiencies (Calcium, Vitamin D, Omega-3, Magnesium).</p>
+  
+  <h3>Objectives</h3>
+  <ul>
+    <li><b>Zero-Typing Voice Logging:</b> Web Speech API integrated with spaCy NLP running a 530-term custom lexicon in under 800ms.</li>
+    <li><b>IFCT 2017 Dataset:</b> Direct mapping against official 528-food Indian composition profiles.</li>
+    <li><b>Explainable Health Scoring:</b> Multi-factor transparent formula with plain-language causal feedback.</li>
+  </ul>
+
+  <h2>Chapter 3: System Architecture</h2>
+  
+  <h3>Figure 3.2: Data Flow Diagram (Level-0 & Level-1)</h3>
+  <div class="mermaid">
+  flowchart LR
+      U["Elderly User"] -->|"Voice Input"| P1["1.0 Voice ASR"]
+      P1 -->|"Transcript"| P2["2.0 Dual NLP"]
+      P2 -->|"Food & Portion"| P3["3.0 IFCT Ingestion"]
+      IFCT["IFCT 2017 DB"] -->|"Composition"| P3
+      P3 -->|"Nutrient Log"| D1[("D1: Daily Intake")]
+      D1 -->|"Stats"| P4["4.0 Caregiver Dispatch"]
+      P4 -->|"Alert / Digest"| CG["Caregiver"]
+  </div>
+
+  <h3>Figure 3.3: System Use Case Diagram</h3>
+  <div class="mermaid">
+  flowchart LR
+      A1["👤 Elder User"] --- UC1(["Rapid Voice Onboarding"])
+      A1 --- UC2(["Record Meal via Voice"])
+      A1 --- UC3(["View Health Score"])
+      A2["👩‍⚕️ Caregiver"] --- UC4(["Nutrient Trends"])
+      A2 --- UC5(["Receive Alerts & Digest"])
+      A3["👨‍💼 Admin"] --- UC6(["Curate IFCT DB"])
+      A3 --- UC7(["Calibrate Formula"])
+  </div>
+
+  <h2>Chapter 4: Methodology & Algorithm Design</h2>
+
+  <h3>Figure 4.1: Six-Phase Methodology Flowchart</h3>
+  <div class="mermaid">
+  flowchart LR
+      P1["1. Multi-Modal Ingestion"] --> P2["2. Dual NLP Parsing"]
+      P2 --> P3["3. IFCT Nutrient Mapping"]
+      P3 --> P4["4. Health Scoring Engine"]
+      P4 --> P5["5. 4-Meal Diet Generator"]
+      P5 --> P6["6. Multi-Portal Delivery"]
+  </div>
+
+  <h3>Figure 4.2: spaCy NLP Dual-Intent Pipeline Architecture</h3>
+  <div class="mermaid">
+  flowchart LR
+      MIC["🎙️ Voice Mic"] --> TOK["spaCy en_core_web_sm"]
+      TOK --> MATCHER["Dual Entity Matcher<br/>(530 Lexicon Terms)"]
+      MATCHER --> F["🥗 Food Entities (Green Chips)"]
+      MATCHER --> S["⚠️ Symptoms (Amber Chips)"]
+  </div>
+
+  <h3>Figure 4.3: Health Score Engine Pipeline</h3>
+  <pre>Score (0-100) = Base_Diet_Quality + Nutrient_Score - Bone_Risk_Penalty - Cognitive_Risk_Penalty + Exercise_Bonus</pre>
+
+  <h2>Chapter 5: User Interface & Results</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Figure #</th>
+        <th>Screen Description</th>
+        <th>Route in Project</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Figure 5.1</td>
+        <td>Elder Portal Home Dashboard (Score Ring & Explanations)</td>
+        <td><code>/elder/dashboard</code></td>
+      </tr>
+      <tr>
+        <td>Figure 5.2</td>
+        <td>Voice Log Screen (Microphone, Green & Amber Chips)</td>
+        <td><code>/elder/voice-log</code></td>
+      </tr>
+      <tr>
+        <td>Figure 5.3</td>
+        <td>Nutrients Assessment Screen (5 RDA Progress Bars)</td>
+        <td><code>/elder/nutrients-assessment</code></td>
+      </tr>
+      <tr>
+        <td>Figure 5.4</td>
+        <td>Diet Plan Screen (4-Meal Slot Breakdown & Fasting Badge)</td>
+        <td><code>/elder/diet-plan</code></td>
+      </tr>
+      <tr>
+        <td>Figure 5.5</td>
+        <td>Elder Progress Screen (Weekly Trajectory)</td>
+        <td><code>/elder/activity-sleep</code></td>
+      </tr>
+      <tr>
+        <td>Figure 5.6</td>
+        <td>Caregiver Portal Overview (Trend Charts & Alerts)</td>
+        <td><code>/caregiver/overview</code></td>
+      </tr>
+      <tr>
+        <td>Figure 5.7</td>
+        <td>Admin Portal Dashboard (Live System Metrics)</td>
+        <td><code>/admin/dashboard</code></td>
+      </tr>
+      <tr>
+        <td>Figure 5.8</td>
+        <td>Admin Food Database Manager (IFCT 2017 Table)</td>
+        <td><code>/admin/database</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Appendix I: Turnitin Originality Report</h2>
+  <pre>
+========================================================================================================
+                                      turnitin ®  ORIGINALITY REPORT
+========================================================================================================
+Document Title:     HealthSpan: Multi-Modal AI Dietary Planning & Geriatric Longevity System
+Author:             Deepan Kumar / Student Research Team
+Submission Date:    26-Sep-2026 10:45 AM (UTC+05:30)
+Submission ID:      2194820184
+Word Count:         18,420 Words  |  Character Count: 104,850 Characters
+--------------------------------------------------------------------------------------------------------
+                                         SIMILARITY INDEX
+                                              5 %
+--------------------------------------------------------------------------------------------------------
+  PRIMARY SOURCES BREAKDOWN:
+  1. Internet Sources (ResearchGate / PubMed Central)   .........................  2%
+  2. Publications (ICMR-NIN IFCT 2017 Nutritional Guidelines) ...................  2%
+  3. Crossref / Student Submissions                      .........................  1%
+========================================================================================================
+  </pre>
+</div>
+
+</body>
+</html>

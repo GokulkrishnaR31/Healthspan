@@ -1,0 +1,259 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model ai_recommendations {
+  id                  String   @id @default(cuid())
+  elderly_profile_id  String
+  recommendation_type String
+  title               String
+  description         String?
+  priority            String?
+  is_active           Boolean
+  valid_from          DateTime?
+  valid_until         DateTime?
+  created_at          DateTime @default(now())
+  updated_at          DateTime @default(now())
+  elderly_profiles    elderly_profiles @relation(fields: [elderly_profile_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model caregivers {
+  id                  String   @id @default(cuid())
+  user_id             String   @unique
+  specialization      String?
+  years_of_experience Int?
+  license_number      String?
+  availability        String?
+  created_at          DateTime @default(now())
+  updated_at          DateTime @default(now())
+  users               users    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model daily_intake {
+  id                 String   @id @default(cuid())
+  elderly_profile_id String
+  date               DateTime
+  total_calories     Decimal
+  total_protein_g    Decimal
+  total_carbs_g      Decimal
+  total_fat_g        Decimal
+  total_fiber_g      Decimal
+  total_sugar_g      Decimal
+  total_sodium_mg    Decimal
+  total_potassium_mg Decimal
+  total_calcium_mg   Decimal
+  total_iron_mg      Decimal
+  total_vitamin_c_mg Decimal
+  created_at         DateTime @default(now())
+  updated_at         DateTime @default(now())
+  elderly_profiles   elderly_profiles @relation(fields: [elderly_profile_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([elderly_profile_id, date])
+}
+
+model diseases {
+  id               String   @id @default(cuid())
+  name             String   @unique
+  description      String?
+  icd_code         String?
+  created_at       DateTime @default(now())
+  updated_at       DateTime @default(now())
+  elderly_diseases elderly_diseases[]
+}
+
+model elderly_diseases {
+  elderly_profile_id String
+  disease_id         String
+  diseases           diseases         @relation(fields: [disease_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  elderly_profiles   elderly_profiles @relation(fields: [elderly_profile_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([elderly_profile_id, disease_id])
+}
+
+model elderly_health_conditions {
+  elderly_profile_id  String
+  health_condition_id String
+  health_conditions   health_conditions @relation(fields: [health_condition_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  elderly_profiles    elderly_profiles  @relation(fields: [elderly_profile_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([elderly_profile_id, health_condition_id])
+}
+
+model elderly_profiles {
+  id                        String    @id @default(cuid())
+  user_id                   String    @unique
+  date_of_birth             DateTime?
+  gender                    String?
+  height_cm                 Decimal?
+  weight_kg                 Decimal?
+  blood_type                String?
+  emergency_contact_info    String?
+  created_at                DateTime  @default(now())
+  updated_at                DateTime  @default(now())
+  address                   String?
+  allergies                 String?
+  medications               String?
+  activity_level            String?
+  dietary_preference        String?
+  daily_water_goal          Decimal?
+  daily_calorie_goal        Decimal?
+  ai_recommendations        ai_recommendations[]
+  daily_intake              daily_intake[]
+  elderly_diseases          elderly_diseases[]
+  elderly_health_conditions elderly_health_conditions[]
+  users                     users                      @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  emergency_contacts        emergency_contacts[]
+  health_scores             health_scores[]
+  meal_logs                 meal_logs[]
+  reports                   reports[]
+}
+
+model emergency_contacts {
+  id                 String   @id @default(cuid())
+  elderly_profile_id String
+  first_name         String
+  last_name          String
+  phone              String
+  relationship       String
+  is_primary         Boolean
+  created_at         DateTime @default(now())
+  updated_at         DateTime @default(now())
+  elderly_profiles   elderly_profiles @relation(fields: [elderly_profile_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model food_items {
+  id                  String   @id @default(cuid())
+  name                String
+  description         String?
+  category            String?
+  is_vegetarian       Boolean
+  is_vegan            Boolean
+  is_gluten_free      Boolean
+  created_at          DateTime @default(now())
+  updated_at          DateTime @default(now())
+  meal_log_food_items meal_log_food_items[]
+  nutrition_facts     nutrition_facts[]
+}
+
+model health_conditions {
+  id                        String   @id @default(cuid())
+  name                      String   @unique
+  description               String?
+  created_at                DateTime @default(now())
+  updated_at                DateTime @default(now())
+  elderly_health_conditions elderly_health_conditions[]
+}
+
+model health_scores {
+  id                  String   @id @default(cuid())
+  elderly_profile_id  String
+  score_date          DateTime
+  overall_score       Decimal
+  nutrition_score     Decimal
+  activity_score      Decimal
+  sleep_score         Decimal
+  mental_health_score Decimal
+  created_at          DateTime @default(now())
+  updated_at          DateTime @default(now())
+  elderly_profiles    elderly_profiles @relation(fields: [elderly_profile_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([elderly_profile_id, score_date])
+}
+
+model meal_log_food_items {
+  meal_log_id  String
+  food_item_id String
+  food_items   food_items @relation(fields: [food_item_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  meal_logs    meal_logs  @relation(fields: [meal_log_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([meal_log_id, food_item_id])
+}
+
+model meal_logs {
+  id                  String   @id @default(cuid())
+  elderly_profile_id  String
+  meal_time           DateTime
+  meal_type           String
+  notes               String?
+  created_at          DateTime @default(now())
+  updated_at          DateTime @default(now())
+  meal_log_food_items meal_log_food_items[]
+  elderly_profiles    elderly_profiles @relation(fields: [elderly_profile_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model notifications {
+  id                String   @id @default(cuid())
+  user_id           String
+  title             String
+  message           String
+  notification_type String
+  is_read           Boolean
+  created_at        DateTime @default(now())
+  updated_at        DateTime @default(now())
+  users             users    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model nutrition_facts {
+  id           String   @id @default(cuid())
+  food_item_id String
+  calories     Decimal?
+  protein_g    Decimal?
+  carbs_g      Decimal?
+  fat_g        Decimal?
+  fiber_g      Decimal?
+  sugar_g      Decimal?
+  sodium_mg    Decimal?
+  potassium_mg Decimal?
+  calcium_mg   Decimal?
+  iron_mg      Decimal?
+  vitamin_c_mg Decimal?
+  created_at   DateTime @default(now())
+  updated_at   DateTime @default(now())
+  food_items   food_items @relation(fields: [food_item_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model reports {
+  id                 String   @id @default(cuid())
+  elderly_profile_id String
+  report_type        String
+  title              String
+  content            String
+  generated_at       DateTime @default(now())
+  created_at         DateTime @default(now())
+  updated_at         DateTime @default(now())
+  elderly_profiles   elderly_profiles @relation(fields: [elderly_profile_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model settings {
+  id                       String   @id @default(cuid())
+  user_id                  String   @unique
+  theme                    String
+  language                 String   @default("en")
+  notification_preferences String
+  privacy_settings         String
+  created_at               DateTime @default(now())
+  updated_at               DateTime @default(now())
+  users                    users    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model users {
+  id               String   @id @default(cuid())
+  email            String   @unique
+  password_hash    String
+  first_name       String
+  last_name        String
+  phone            String?
+  role             String
+  is_active        Boolean
+  created_at       DateTime @default(now())
+  updated_at       DateTime @default(now())
+  caregivers       caregivers?
+  elderly_profiles elderly_profiles?
+  notifications    notifications[]
+  settings         settings?
+}

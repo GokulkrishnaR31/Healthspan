@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HealthSpan - Complete System Architecture Diagram</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #f8fafc;
+      color: #0f172a;
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .top-actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 13px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: all 0.2s ease;
+    }
+    .btn-primary { background: #006b5f; color: white; }
+    .btn-primary:hover { background: #005249; transform: translateY(-1px); }
+    .btn-secondary { background: white; color: #334155; border: 1px solid #cbd5e1; }
+    .btn-secondary:hover { background: #f1f5f9; }
+
+    .diagram-container {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+      padding: 30px;
+      max-width: 1200px;
+      width: 100%;
+    }
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .caption {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-actions">
+    <button class="btn btn-primary" onclick="downloadPNG()">📥 Export High-Res Image (PNG)</button>
+    <button class="btn btn-secondary" onclick="downloadSVG()">📄 Export Vector (SVG)</button>
+    <button class="btn btn-secondary" onclick="window.print()">🖨️ Print / Save to PDF</button>
+  </div>
+
+  <div class="diagram-container" id="capture-container">
+    <svg id="architecture-svg" viewBox="0 0 1140 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Gradients -->
+        <linearGradient id="grad-admin" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#00897B"/>
+          <stop offset="100%" stop-color="#00695C"/>
+        </linearGradient>
+        <linearGradient id="grad-elder" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#1E88E5"/>
+          <stop offset="100%" stop-color="#1565C0"/>
+        </linearGradient>
+        <linearGradient id="grad-engine" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#F59E0B"/>
+          <stop offset="100%" stop-color="#D97706"/>
+        </linearGradient>
+        <linearGradient id="grad-delivery" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0D9488"/>
+          <stop offset="100%" stop-color="#0F766E"/>
+        </linearGradient>
+        <linearGradient id="grad-db" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#312E81"/>
+          <stop offset="100%" stop-color="#1E1B4B"/>
+        </linearGradient>
+
+        <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+          <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.06"/>
+        </filter>
+
+        <!-- Arrow Marker -->
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#475569"/>
+        </marker>
+        <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0D9488"/>
+        </marker>
+      </defs>
+
+      <!-- Title Header -->
+      <text x="570" y="38" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="24" font-weight="900" fill="#0F172A">
+        HealthSpan: Personalized Indian Geriatric Nutrition & Longevity System
+      </text>
+      <text x="570" y="62" text-anchor="middle" font-family="'Inter', sans-serif" font-size="13" font-weight="600" fill="#64748B">
+        Three-Tier Multi-Modal Architecture: Ingestion & Curation → Clinical AI Processing → Personalized Delivery & Caregiver Alerting
+      </text>
+
+      <!-- ========================================== -->
+      <!-- TIER 1 (LEFT): INGESTION & USER INTERACTION -->
+      <!-- ========================================== -->
+
+      <!-- Module 1: Admin Portal -->
+      <g filter="url(#card-shadow)">
+        <rect x="30" y="95" width="220" height="230" rx="18" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+        <rect x="30" y="95" width="220" height="42" rx="18" fill="url(#grad-admin)"/>
+        <rect x="30" y="119" width="220" height="18" fill="url(#grad-admin)"/>
+        <text x="140" y="122" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="14" font-weight="800" fill="white">
+          🛡️ Admin & Research Portal
+        </text>
+
+        <!-- Subcard 1: IFCT Database -->
+        <rect x="45" y="150" width="190" height="68" rx="12" fill="white" stroke="#CBD5E1" stroke-width="1.2"/>
+        <text x="140" y="174" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="12" font-weight="800" fill="#0F172A">
+          IFCT 2017 Food Database
+        </text>
+        <text x="140" y="194" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="500" fill="#64748B">
+          528 Regional Indian Dishes
+        </text>
+        <text x="140" y="208" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="500" fill="#0D9488">
+          Macros, GI & Micronutrients
+        </text>
+
+        <!-- Subcard 2: Rules Calibration -->
+        <rect x="45" y="230" width="190" height="80" rx="12" fill="white" stroke="#CBD5E1" stroke-width="1.2"/>
+        <text x="140" y="254" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="12" font-weight="800" fill="#0F172A">
+          ICMR Rules & Calibration
+        </text>
+        <text x="140" y="274" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="500" fill="#64748B">
+          Daily Baseline: 1600 kcal
+        </text>
+        <text x="140" y="289" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="500" fill="#E11D48">
+          Sodium Limit & Junk Penalties
+        </text>
+      </g>
+
+      <!-- Module 2: Senior Elder Input -->
+      <g filter="url(#card-shadow)">
+        <rect x="30" y="345" width="220" height="205" rx="18" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+        <rect x="30" y="345" width="220" height="42" rx="18" fill="url(#grad-elder)"/>
+        <rect x="30" y="369" width="220" height="18" fill="url(#grad-elder)"/>
+        <text x="140" y="372" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="14" font-weight="800" fill="white">
+          👵 Senior Elder Input
+        </text>
+
+        <!-- Subcard 1: Voice ASR -->
+        <rect x="45" y="400" width="190" height="66" rx="12" fill="white" stroke="#CBD5E1" stroke-width="1.2"/>
+        <text x="140" y="424" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="12" font-weight="800" fill="#0F172A">
+          Multilingual Voice ASR
+        </text>
+        <text x="140" y="444" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="500" fill="#2563EB">
+          English, Tamil, Hindi Mic Input
+        </text>
+        <text x="140" y="458" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="500" fill="#64748B">
+          Natural Senior Utterances
+        </text>
+
+        <!-- Subcard 2: Clinical Vitals -->
+        <rect x="45" y="476" width="190" height="60" rx="12" fill="white" stroke="#CBD5E1" stroke-width="1.2"/>
+        <text x="140" y="498" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="12" font-weight="800" fill="#0F172A">
+          Daily Clinical Vitals
+        </text>
+        <text x="140" y="518" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="500" fill="#64748B">
+          BP (Sys/Dia), Sugar & Pulse
+        </text>
+      </g>
+
+      <!-- ========================================== -->
+      <!-- TIER 2 (CENTER): AI & PROCESSING ENGINES -->
+      <!-- ========================================== -->
+
+      <g filter="url(#card-shadow)">
+        <rect x="290" y="95" width="530" height="350" rx="20" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1.5"/>
+        <rect x="290" y="95" width="530" height="42" rx="20" fill="url(#grad-engine)"/>
+        <rect x="290" y="119" width="530" height="18" fill="url(#grad-engine)"/>
+        <text x="555" y="122" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="15" font-weight="900" fill="white">
+          🧠 Processing & Clinical AI Engines
+        </text>
+
+        <!-- Engine 1: spaCy NLP -->
+        <rect x="310" y="150" width="235" height="110" rx="14" fill="white" stroke="#CBD5E1" stroke-width="1.2"/>
+        <text x="427" y="176" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="12" font-weight="800" fill="#D97706">
+          spaCy Dual-Entity NLP Parser
+        </text>
+        <text x="427" y="198" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10.5" font-weight="600" fill="#0F172A">
+          • Food & Quantity Extraction
+        </text>
+        <text x="427" y="216" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10.5" font-weight="600" fill="#0F172A">
+          • Geriatric Symptom Identifier
+        </text>
+        <text x="427" y="238" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="500" fill="#059669">
+          ⚡ Latency &lt; 520ms / Utterance
+        </text>
+
+        <!-- Engine 2: ICMR Mapping -->
+        <rect x="565" y="150" width="235" height="110" rx="14" fill="white" stroke="#CBD5E1" stroke-width="1.2"/>
+        <text x="682" y="176" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="12" font-weight="800" fill="#006B5F">
+          ICMR 2024 Nutrient Matcher
+        </text>
+        <text x="682" y="198" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10.5" font-weight="600" fill="#0F172A">
+          • Calories, Protein, Fiber, Fat
+        </text>
+        <text x="682" y="216" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10.5" font-weight="600" fill="#0F172A">
+          • Micronutrients: Calcium, Vit D, Om3
+        </text>
+        <text x="682" y="238" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="500" fill="#2563EB">
+          Tolerance Bounds: ±15% RDA
+        </text>
+
+        <!-- Engine 3: Health Score -->
+        <rect x="310" y="275" width="235" height="150" rx="14" fill="white" stroke="#CBD5E1" stroke-width="1.2"/>
+        <text x="427" y="302" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="12" font-weight="800" fill="#2563EB">
+          Explainable Health Score (0–100)
+        </text>
+        <text x="427" y="324" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="500" fill="#475569">
+          Composite Multi-Factor Formula:
+        </text>
+        <text x="427" y="344" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="700" fill="#0F172A">
+          S = 0.45·C + 0.35·P + 0.20·W
+        </text>
+        <text x="427" y="364" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="600" fill="#E11D48">
+          - Fast Food Penalties (-15 Pts)
+        </text>
+        <text x="427" y="382" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="600" fill="#059669">
+          + Activity & Hydration Boosters
+        </text>
+        <text x="427" y="404" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="700" fill="#7C3AED">
+          Causal Plain-Language Feedback
+        </text>
+
+        <!-- Engine 4: Clinical Risk Assessment -->
+        <rect x="565" y="275" width="235" height="150" rx="14" fill="white" stroke="#CBD5E1" stroke-width="1.2"/>
+        <text x="682" y="302" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="12" font-weight="800" fill="#7C3AED">
+          MMSE & FRAX® Risk Engine
+        </text>
+        <text x="682" y="326" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10.5" font-weight="600" fill="#0F172A">
+          • MMSE Cognitive Status (0–30)
+        </text>
+        <text x="682" y="346" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="500" fill="#64748B">
+          Normal / Mild / Moderate
+        </text>
+        <text x="682" y="368" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10.5" font-weight="600" fill="#0F172A">
+          • FRAX 10-Yr Fracture Risk
+        </text>
+        <text x="682" y="388" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="500" fill="#64748B">
+          Major Osteoporotic & Hip %
+        </text>
+        <text x="682" y="408" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="700" fill="#D97706">
+          Texture & Chewability Guard
+        </text>
+      </g>
+
+      <!-- ========================================== -->
+      <!-- TIER 3 (BOTTOM CENTER): PERSISTENCE LAYER -->
+      <!-- ========================================== -->
+
+      <g filter="url(#card-shadow)">
+        <rect x="290" y="475" width="530" height="95" rx="16" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="1.5"/>
+        <rect x="290" y="475" width="530" height="30" rx="16" fill="url(#grad-db)"/>
+        <rect x="290" y="493" width="530" height="12" fill="url(#grad-db)"/>
+        <text x="555" y="496" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="12" font-weight="800" fill="white">
+          🗄️ MongoDB Atlas Cloud Persistence Layer (DietPlanner DB)
+        </text>
+
+        <!-- DB Collections -->
+        <g transform="translate(305, 515)">
+          <rect x="0" y="0" width="115" height="42" rx="8" fill="white" stroke="#CBD5E1"/>
+          <text x="57" y="18" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="10" font-weight="800" fill="#0F172A">Login & Users</text>
+          <text x="57" y="32" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8.5" font-weight="500" fill="#64748B">Auth & Roles</text>
+
+          <rect x="125" y="0" width="120" height="42" rx="8" fill="white" stroke="#CBD5E1"/>
+          <text x="185" y="18" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="10" font-weight="800" fill="#0F172A">ElderProfiles</text>
+          <text x="185" y="32" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8.5" font-weight="500" fill="#64748B">Vitals & Rules</text>
+
+          <rect x="255" y="0" width="115" height="42" rx="8" fill="white" stroke="#CBD5E1"/>
+          <text x="312" y="18" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="10" font-weight="800" fill="#0F172A">MealLogs</text>
+          <text x="312" y="32" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8.5" font-weight="500" fill="#64748B">30-Day History</text>
+
+          <rect x="380" y="0" width="120" height="42" rx="8" fill="white" stroke="#CBD5E1"/>
+          <text x="440" y="18" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="10" font-weight="800" fill="#0F172A">ActivityLogs</text>
+          <text x="440" y="32" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8.5" font-weight="500" fill="#64748B">Steps, Sleep, BP</text>
+        </g>
+      </g>
+
+      <!-- ========================================== -->
+      <!-- TIER 4 (RIGHT): OUTPUT & DELIVERY -->
+      <!-- ========================================== -->
+
+      <g filter="url(#card-shadow)">
+        <rect x="850" y="95" width="260" height="475" rx="20" fill="#F0FDFA" stroke="#99F6E4" stroke-width="1.5"/>
+        <rect x="850" y="95" width="260" height="42" rx="20" fill="url(#grad-delivery)"/>
+        <rect x="850" y="119" width="260" height="18" fill="url(#grad-delivery)"/>
+        <text x="980" y="122" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="14" font-weight="800" fill="white">
+          📲 Output & Delivery Services
+        </text>
+
+        <!-- Service 1: Diet Plan -->
+        <rect x="865" y="150" width="230" height="120" rx="14" fill="white" stroke="#CBD5E1" stroke-width="1.2"/>
+        <text x="980" y="174" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="12" font-weight="800" fill="#0D9488">
+          Personalized 4-Slot Diet Plan
+        </text>
+        <text x="980" y="196" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#0F172A">
+          🌅 Breakfast • ☀️ Lunch
+        </text>
+        <text x="980" y="214" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#0F172A">
+          ☕ Evening Snacks • 🌙 Dinner
+        </text>
+        <text x="980" y="234" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="500" fill="#475569">
+          Dynamic Tamil Nadu Regional Cuisine
+        </text>
+        <text x="980" y="252" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="700" fill="#00897B">
+          Soft Texture & Sattvic Fasting Safe
+        </text>
+
+        <!-- Service 2: Alerts -->
+        <rect x="865" y="282" width="230" height="105" rx="14" fill="white" stroke="#CBD5E1" stroke-width="1.2"/>
+        <text x="980" y="306" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="12" font-weight="800" fill="#E11D48">
+          Caregiver Safety Gateway
+        </text>
+        <text x="980" y="328" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#0F172A">
+          🍟 Fast Food Incident Alerts
+        </text>
+        <text x="980" y="346" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#0F172A">
+          ⏰ Missed Meal (6 PM) Warning
+        </text>
+        <text x="980" y="366" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="700" fill="#E11D48">
+          Twilio SMS & WhatsApp Dispatch
+        </text>
+
+        <!-- Service 3: Caregiver Analytics -->
+        <rect x="865" y="399" width="230" height="155" rx="14" fill="white" stroke="#CBD5E1" stroke-width="1.2"/>
+        <text x="980" y="424" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="12" font-weight="800" fill="#2563EB">
+          Caregiver Health Dashboard
+        </text>
+        <text x="980" y="446" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#0F172A">
+          • 7-Day Adherence Heatmap
+        </text>
+        <text x="980" y="466" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#0F172A">
+          • Calcium (79%) & Omega-3 (91%)
+        </text>
+        <text x="980" y="486" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#0F172A">
+          • Clinical BP & Sugar Trends
+        </text>
+        <text x="980" y="506" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#0F172A">
+          • One-Click Doctor Health Report
+        </text>
+        <text x="980" y="532" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" font-weight="700" fill="#16A34A">
+          Assigned Senior Care Code Sync ✓
+        </text>
+      </g>
+
+      <!-- ========================================== -->
+      <!-- CONNECTING DATA FLOW ARROWS -->
+      <!-- ========================================== -->
+
+      <!-- Admin to Processing Engine -->
+      <path d="M 250 210 L 290 210" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+      <text x="270" y="200" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#00695C">Rules</text>
+
+      <!-- Elder to Processing Engine -->
+      <path d="M 250 440 Q 270 440 270 380 T 290 340" stroke="#475569" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+      <text x="270" y="325" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#1E88E5">Voice & Vitals</text>
+
+      <!-- Engine to Database -->
+      <path d="M 555 445 L 555 475" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+      <text x="595" y="462" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#312E81">Sync & Store</text>
+
+      <!-- Engine to Output -->
+      <path d="M 820 270 L 850 270" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+      <text x="835" y="260" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#D97706">Generate</text>
+
+      <!-- Database to Caregiver Output -->
+      <path d="M 820 520 L 850 520" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+      <text x="835" y="510" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#0D9488">Fetch</text>
+
+      <!-- Bottom Caption Bar -->
+      <rect x="30" y="605" width="1080" height="50" rx="12" fill="#F1F5F9" stroke="#E2E8F0"/>
+      <text x="570" y="626" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="12" font-weight="800" fill="#1E293B">
+        Fig. 1. End-to-End System Architecture of HealthSpan Geriatric Clinical Nutrition & Caregiver Monitoring Framework.
+      </text>
+      <text x="570" y="642" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10.5" font-weight="500" fill="#64748B">
+        Integrates ICMR-NIN Standards, IFCT 2017 Dataset, spaCy Dual-Entity NLP, Explainable 0–100 Health Scoring, MMSE & FRAX® Clinical Engines.
+      </text>
+    </svg>
+
+    <p class="caption">
+      Figure 1: Complete System Architecture of the Proposed HealthSpan Geriatric Clinical Nutrition & Longevity System.
+    </p>
+  </div>
+
+  <script>
+    function downloadSVG() {
+      const svgEl = document.getElementById('architecture-svg');
+      const serializer = new XMLSerializer();
+      const source = serializer.serializeToString(svgEl);
+      const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'fig1_healthspan_architecture.svg';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    function downloadPNG() {
+      const svgEl = document.getElementById('architecture-svg');
+      const serializer = new XMLSerializer();
+      const svgString = serializer.serializeToString(svgEl);
+      const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+      const URLObj = window.URL || window.webkitURL || window;
+      const blobURL = URLObj.createObjectURL(svgBlob);
+      
+      const image = new Image();
+      image.onload = () => {
+        const canvas = document.createElement('canvas');
+        // High-DPI scale (3x for crisp publication quality)
+        const scale = 3;
+        canvas.width = 1140 * scale;
+        canvas.height = 680 * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.scale(scale, scale);
+        ctx.drawImage(image, 0, 0);
+        
+        const pngURL = canvas.toDataURL('image/png');
+        const a = document.createElement('a');
+        a.href = pngURL;
+        a.download = 'fig1_healthspan_architecture.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      };
+      image.src = blobURL;
+    }
+  </script>
+</body>
+</html>

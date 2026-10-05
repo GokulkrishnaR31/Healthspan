@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HealthSpan: Personalized Indian Geriatric Nutrition &amp; Longevity System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #f8fafc;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      padding: 24px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #0f172a;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 13.5px;
+      border: 1px solid #cbd5e1;
+      background: white;
+      color: #1e293b;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: all 0.15s ease;
+    }
+    .btn:hover { background: #f1f5f9; border-color: #94a3b8; }
+    .btn-primary { background: #0f766e; color: white; border-color: #0f766e; }
+    .btn-primary:hover { background: #115e59; }
+    .btn-success { background: #1e293b; color: white; border-color: #1e293b; }
+    .btn-success:hover { background: #0f172a; }
+
+    .canvas-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 26px 30px 20px 30px;
+      max-width: 1080px;
+      width: 100%;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <button class="btn btn-primary" onclick="downloadPNG(3)">💾 Download High-Res Publication PNG (300 DPI)</button>
+    <button class="btn btn-success" onclick="downloadSVG()">📐 Download Vector SVG</button>
+    <button class="btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+  </div>
+
+  <div class="canvas-card" id="diagram-wrapper">
+    <svg id="academic-svg" viewBox="0 0 1020 570" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Standard Crisp Academic Arrow Marker -->
+        <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0f172a"/>
+        </marker>
+        <marker id="arr-navy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#1E1B4B"/>
+        </marker>
+      </defs>
+
+      <!-- Background -->
+      <rect width="1020" height="570" fill="#FFFFFF"/>
+
+      <!-- ============================================================ -->
+      <!-- TITLES & FIGURE HEADER                                       -->
+      <!-- ============================================================ -->
+      <text x="510" y="34" text-anchor="middle" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="800" fill="#0f172a" letter-spacing="-0.02em">
+        HealthSpan: Personalized Indian Geriatric Nutrition &amp; Longevity System
+      </text>
+      <text x="510" y="56" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="13" font-weight="500" fill="#475569">
+        Professional academic publication architecture
+      </text>
+
+      <!-- ============================================================ -->
+      <!-- 1. TOP-LEFT: ADMIN PORTAL (GREEN #059669)                    -->
+      <!-- ============================================================ -->
+      <g id="box-admin" transform="translate(15, 82)">
+        <rect width="215" height="198" rx="10" fill="#059669" stroke="#047857" stroke-width="1.5"/>
+        <text x="107.5" y="30" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="15" font-weight="800" fill="#FFFFFF">
+          Admin Portal
+        </text>
+
+        <!-- Card 1 -->
+        <rect x="12" y="46" width="191" height="62" rx="8" fill="#FFFFFF" stroke="#047857" stroke-width="1"/>
+        <text x="107.5" y="71" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a">
+          IFCT 2017
+        </text>
+        <text x="107.5" y="91" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a">
+          Dataset Curation
+        </text>
+
+        <!-- Card 2: Dynamic Health Score Formula Calibration -->
+        <rect x="12" y="118" width="191" height="68" rx="8" fill="#FFFFFF" stroke="#047857" stroke-width="1"/>
+        <text x="107.5" y="141" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">
+          Dynamic Health Score
+        </text>
+        <text x="107.5" y="160" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">
+          Formula Calibration
+        </text>
+      </g>
+
+      <!-- ============================================================ -->
+      <!-- 2. BOTTOM-LEFT: ELDER PORTAL (BLUE #0284C7)                  -->
+      <!-- ============================================================ -->
+      <g id="box-elder" transform="translate(15, 302)">
+        <rect width="215" height="198" rx="10" fill="#0284C7" stroke="#0369A1" stroke-width="1.5"/>
+        <text x="107.5" y="30" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="15" font-weight="800" fill="#FFFFFF">
+          Elder Portal
+        </text>
+
+        <!-- Card 1: Voice-Based Multilingual Input -->
+        <rect x="12" y="46" width="191" height="62" rx="8" fill="#FFFFFF" stroke="#0369A1" stroke-width="1"/>
+        <text x="107.5" y="71" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">
+          Voice-Based
+        </text>
+        <text x="107.5" y="91" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">
+          Multilingual Input
+        </text>
+
+        <!-- Card 2: Clinical Daily Vitals -->
+        <rect x="12" y="118" width="191" height="68" rx="8" fill="#FFFFFF" stroke="#0369A1" stroke-width="1"/>
+        <text x="107.5" y="145" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a">
+          Clinical Daily
+        </text>
+        <text x="107.5" y="165" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a">
+          Vitals
+        </text>
+      </g>
+
+      <!-- Arrow 1: Admin Portal -> Processing -->
+      <path d="M 230 181 L 268 181" stroke="#0f172a" stroke-width="2" marker-end="url(#arr)"/>
+
+      <!-- Arrow 2: Elder Portal -> Processing (Orthogonal) -->
+      <path d="M 230 401 L 252 401 L 252 276 L 268 276" stroke="#0f172a" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+
+      <!-- ============================================================ -->
+      <!-- 3. CENTER: PROCESSING & AI ENGINES (OCHRE/ORANGE #D97706)    -->
+      <!-- ============================================================ -->
+      <g id="box-processing" transform="translate(275, 82)">
+        <rect width="460" height="270" rx="10" fill="#D97706" stroke="#B45309" stroke-width="1.5"/>
+        <text x="230" y="30" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF">
+          Processing &amp; AI Engines
+        </text>
+
+        <!-- Top-Left Card: spaCy Dual-Entity NLP -->
+        <g transform="translate(14, 46)">
+          <rect width="210" height="96" rx="8" fill="#FFFFFF" stroke="#B45309" stroke-width="1"/>
+          <text x="105" y="32" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a">
+            spaCy Dual-Entity
+          </text>
+          <text x="105" y="53" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a">
+            NLP Food &amp;
+          </text>
+          <text x="105" y="74" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a">
+            Symptom Extractor
+          </text>
+        </g>
+
+        <!-- Top-Right Card: Nutritional Mapping & Deficiency Engine -->
+        <g transform="translate(236, 46)">
+          <rect width="210" height="96" rx="8" fill="#FFFFFF" stroke="#B45309" stroke-width="1"/>
+          <text x="105" y="36" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a">
+            Nutritional Mapping &amp;
+          </text>
+          <text x="105" y="58" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="13" font-weight="700" fill="#0f172a">
+            Deficiency Engine
+          </text>
+        </g>
+
+        <!-- Bottom-Left Card: Explainable Health Scoring Formula -->
+        <g transform="translate(14, 154)">
+          <rect width="210" height="102" rx="8" fill="#FFFFFF" stroke="#B45309" stroke-width="1"/>
+          <text x="105" y="27" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">
+            Explainable Health
+          </text>
+          <text x="105" y="47" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">
+            Scoring Formula
+          </text>
+          <text x="105" y="67" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">
+            (0-100) with
+          </text>
+          <text x="105" y="87" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">
+            Biomarker Weights
+          </text>
+        </g>
+
+        <!-- Bottom-Right Card: Bone & Cognitive Health Risk Assessment -->
+        <g transform="translate(236, 154)">
+          <rect width="210" height="102" rx="8" fill="#FFFFFF" stroke="#B45309" stroke-width="1"/>
+          <text x="105" y="36" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">
+            Bone &amp; Cognitive
+          </text>
+          <text x="105" y="57" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">
+            Health Risk
+          </text>
+          <text x="105" y="78" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">
+            Assessment
+          </text>
+        </g>
+      </g>
+
+      <!-- Bi-directional arrows between AI Engines & MongoDB Atlas -->
+      <!-- Downward Arrow (Store / Query) -->
+      <path d="M 485 352 L 485 388" stroke="#0f172a" stroke-width="2" marker-end="url(#arr)"/>
+      <!-- Upward Arrow (Fetch / Stream Context) -->
+      <path d="M 525 392 L 525 356" stroke="#0f172a" stroke-width="2" marker-end="url(#arr)"/>
+
+      <!-- ============================================================ -->
+      <!-- 4. BOTTOM-CENTER: MONGODB ATLAS STORAGE LAYER (NAVY #1E1B4B) -->
+      <!-- ============================================================ -->
+      <g id="box-storage" transform="translate(275, 395)">
+        <rect width="460" height="105" rx="10" fill="#1E1B4B" stroke="#0F172A" stroke-width="1.5"/>
+        <text x="230" y="27" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="14.5" font-weight="800" fill="#FFFFFF">
+          MongoDB Atlas Storage Layer
+        </text>
+
+        <!-- 4 Storage Entities -->
+        <!-- Pill 1 -->
+        <rect x="14" y="38" width="98" height="54" rx="8" fill="#FFFFFF" stroke="#0F172A" stroke-width="1"/>
+        <text x="63" y="61" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12" font-weight="700" fill="#0f172a">User</text>
+        <text x="63" y="80" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12" font-weight="700" fill="#0f172a">Profiles</text>
+
+        <!-- Pill 2 -->
+        <rect x="122" y="38" width="98" height="54" rx="8" fill="#FFFFFF" stroke="#0F172A" stroke-width="1"/>
+        <text x="171" y="61" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12" font-weight="700" fill="#0f172a">Meal</text>
+        <text x="171" y="80" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12" font-weight="700" fill="#0f172a">Logs</text>
+
+        <!-- Pill 3 -->
+        <rect x="230" y="38" width="108" height="54" rx="8" fill="#FFFFFF" stroke="#0F172A" stroke-width="1"/>
+        <text x="284" y="61" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12" font-weight="700" fill="#0f172a">Activity</text>
+        <text x="284" y="80" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12" font-weight="700" fill="#0f172a">&amp; Vitals</text>
+
+        <!-- Pill 4: IFCT 2017 Database -->
+        <rect x="348" y="38" width="98" height="54" rx="8" fill="#FFFFFF" stroke="#0F172A" stroke-width="1"/>
+        <text x="397" y="61" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="11.5" font-weight="700" fill="#0f172a">IFCT 2017</text>
+        <text x="397" y="80" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="11.5" font-weight="700" fill="#0f172a">Database</text>
+      </g>
+
+      <!-- Arrow: Processing -> Output (Right) -->
+      <path d="M 735 217 L 778 217" stroke="#0f172a" stroke-width="2" marker-end="url(#arr)"/>
+
+      <!-- Data Flow Arrow: MongoDB Stored Logs -> Caregiver Analytics (Item 9) -->
+      <path d="M 735 448 L 778 448" stroke="#0f172a" stroke-width="2" marker-end="url(#arr)"/>
+
+      <!-- ============================================================ -->
+      <!-- 5. RIGHT: OUTPUT & DELIVERY (TEAL #0D9488)                   -->
+      <!-- ============================================================ -->
+      <g id="box-output" transform="translate(785, 82)">
+        <rect width="220" height="418" rx="10" fill="#0D9488" stroke="#0F766E" stroke-width="1.5"/>
+        <text x="110" y="30" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="15.5" font-weight="800" fill="#FFFFFF">
+          Output &amp; Delivery
+        </text>
+
+        <!-- Card 1: 4-Slot Diet Plan Generator -->
+        <g transform="translate(14, 46)">
+          <rect width="192" height="100" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1"/>
+          <text x="96" y="30" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">Personalized 4-Slot</text>
+          <text x="96" y="51" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">Regional Diet Plan</text>
+          <text x="96" y="72" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">Generator</text>
+        </g>
+
+        <!-- Card 2: Automated WhatsApp/SMS Health Digest Gateway -->
+        <g transform="translate(14, 164)">
+          <rect width="192" height="102" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1"/>
+          <text x="96" y="30" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12" font-weight="700" fill="#0f172a">Automated</text>
+          <text x="96" y="50" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12" font-weight="700" fill="#0f172a">WhatsApp/SMS</text>
+          <text x="96" y="70" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12" font-weight="700" fill="#0f172a">Health Digest Gateway</text>
+        </g>
+
+        <!-- Card 3: Caregiver 7-Day Analytics & Adherence Heatmap -->
+        <g transform="translate(14, 284)">
+          <rect width="192" height="120" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1"/>
+          <text x="96" y="32" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">Caregiver 7-Day</text>
+          <text x="96" y="53" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">Analytics &amp;</text>
+          <text x="96" y="74" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">Adherence</text>
+          <text x="96" y="95" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">Heatmap</text>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <script>
+    function downloadSVG() {
+      const svgElement = document.getElementById('academic-svg');
+      const svgData = new XMLSerializer().serializeToString(svgElement);
+      const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+      const svgUrl = URL.createObjectURL(svgBlob);
+      const downloadLink = document.createElement('a');
+      downloadLink.href = svgUrl;
+      downloadLink.download = 'HealthSpan_Architecture.svg';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      URL.revokeObjectURL(svgUrl);
+    }
+
+    function downloadPNG(scale = 3) {
+      const svgElement = document.getElementById('academic-svg');
+      const svgData = new XMLSerializer().serializeToString(svgElement);
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+
+      const viewBox = svgElement.viewBox.baseVal;
+      const width = viewBox.width * scale;
+      const height = viewBox.height * scale;
+
+      canvas.width = width;
+      canvas.height = height;
+
+      const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(svgBlob);
+
+      img.onload = function() {
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const pngUrl = canvas.toDataURL('image/png');
+        const downloadLink = document.createElement('a');
+        downloadLink.href = pngUrl;
+        downloadLink.download = 'HealthSpan_Architecture_300dpi.png';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        URL.revokeObjectURL(url);
+      };
+      img.src = url;
+    }
+  </script>
+</body>
+</html>

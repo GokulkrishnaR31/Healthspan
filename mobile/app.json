@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "HealthSpan Senior App",
+    "slug": "healthspan-mobile",
+    "version": "1.0.0",
+    "sdkVersion": "54.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#020617"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}

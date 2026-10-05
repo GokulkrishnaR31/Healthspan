@@ -1,0 +1,225 @@
+# Dependencies
+node_modules/
+*/node_modules/
+*/*/node_modules/
+.pnp
+.pnp.js
+dist/
+build/
+.cache/
+
+# Flutter/Dart
+/.dart_tool/
+.flutter-plugins
+.packages
+.dart_tool/
+.build/
+flutter-driver.log
+flutter_export_environment.sh
+.vscode/
+.fvm/
+.dart_tool/
+.packages
+.packages
+.dart_tool/
+.flutter-plugins-dependencies
+.android/
+.ios/
+Flutter/
+.flutter-plugins
+.android/
+Flutter/
+.flutter-plugins
+.gitmodules
+.packages
+.pub
+
+# iOS
+Pods/
+*.xcworkspace
+.xcworkspace
+.xcuserdata/
+*.xcuserdatad
+*.xccheckout
+DerivedData/
+*.moved-aside
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+.xcscmbuild
+
+# Android
+.android/
+/.gradle
+/local.properties
+/.gradle/
+/.captures/
+/.build/
+/.gradle/
+local.properties
+/.idea/
+.captures/
+.mobileinstall/
+build/
+
+# Web
+/dist
+/node_modules/
+/.cache
+ parcel-cache
+ .parcel-cache
+ .cache
+ .parcel-cache
+ .parcel-cache
+ .cache
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.manifest
+*.spec
+installer-log.txt
+log/
+.log
+.pytest_cache/
+.coverage
+.tox
+.nox
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Docker
+.dockerignore
+.docker/
+docker-compose.override.yml
+
+# Misc
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+pids
+*.pid
+*.seed
+*.pid.lock
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.orig
+*.psd
+*.thumbs.db
+*.Thumbs.db
+
+# Backup files
+*~
+*.bak
+*.2x
+*.3x
+*.4x
+*.5x
+*.6x
+*.7x
+*.8x
+*.9x
+*.tmp
+*.temp
+.cache
+.cache
+
+# Package files
+*.tgz
+*.war
+*.jar
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Miscellaneous
+*.tmp
+*.bak
+*.tmp
+*.backup
+*~
+.*.swp
+.idea*
+*.sublime-workspace
+*.sublime-project
+
+# Temporary files
+*.tmp
+*.temp
+.cache
+.node_modules
+ .cache
+ .parcel-cache
+ .cache
+ .parcel-cache

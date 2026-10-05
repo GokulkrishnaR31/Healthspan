@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(alembic --help)",
+      "Bash(pip install *)",
+      "Bash(cd /c/Users/ADMIN/Documents/dietplan project)",
+      "Bash(echo \"Database schema and models have been synchronized.\")"
+    ]
+  }
+}
