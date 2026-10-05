@@ -209,9 +209,10 @@ export default function ElderDietPlan() {
   };
 
   return (
-    <div className="space-y-6 font-['Outfit'] pb-12">
-      {/* ── Top Header ── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-br from-emerald-800 via-teal-900 to-slate-900 p-6 sm:p-7 rounded-3xl text-white shadow-xl relative overflow-hidden">
+    <MobileLayout onOpenVoiceLog={() => setIsVoiceModalOpen(true)}>
+      <div className="space-y-6 font-['Outfit'] pb-12">
+        {/* ── Top Header ── */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-br from-emerald-800 via-teal-900 to-slate-900 p-6 sm:p-7 rounded-3xl text-white shadow-xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 space-y-1.5">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/20 rounded-full border border-emerald-400/30 text-emerald-300 text-xs font-black">
@@ -672,6 +673,7 @@ export default function ElderDietPlan() {
           elderName={profile.name}
         />
       )}
-    </div>
+      </div>
+    </MobileLayout>
   );
 }
