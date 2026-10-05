@@ -70,6 +70,11 @@ export const profileApi = {
   delete: (id) => api.delete('/api/elder/profile'),
 };
 
+export const dietPlanApi = {
+  getAdaptiveRecommendations: (params) => api.get('/api/elder/adaptive-recommendations', { params }),
+  getMonthlyAnalysis: (params) => api.get('/api/elder/monthly-analysis', { params }),
+};
+
 // ─────────────────────────────────────────────────────────
 // Meal Logs API
 // ─────────────────────────────────────────────────────────
