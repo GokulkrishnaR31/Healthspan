@@ -569,7 +569,7 @@ export default function ElderDietPlan() {
 
             {/* Clinical Dietitian Summary Note */}
             <div className="p-5 rounded-2xl bg-indigo-50/80 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 text-xs sm:text-sm text-indigo-950 dark:text-indigo-200 font-medium leading-relaxed">
-              🩺 <strong className="font-black">Clinical Dietitian Note:</strong> {monthlyData?.dietitianSummary || `${profile.name}'s 30-day nutrition adherence shows that bending to their customary comfort foods with strategic micro-toppings resulted in steady glycemic stability and +14% vitality score without diet resistance.`}
+              🩺 <strong className="font-black">Clinical Dietitian Note:</strong> {(monthlyData?.dietitianSummary ? monthlyData.dietitianSummary.replace(/RAVICHANDAR G/gi, profile.name) : null) || `${profile.name}'s 30-day nutrition adherence shows that bending to their customary comfort foods with strategic micro-toppings resulted in steady glycemic stability and +14% vitality score without diet resistance.`}
             </div>
           </div>
         </div>

@@ -1742,28 +1742,39 @@ app.get("/api/elder/adaptive-recommendations", authenticate, async (req, res) =>
     let elderName = req.query.elder_name || req.query.name;
     const userEmail = (req.query.email || req.user?.email || "").trim().toLowerCase();
 
-    // 1. Resolve elder profile
+    // 1. Resolve elder profile & accurate elder name
     let profile = null;
+    let userDoc = null;
     if (mongoose.connection.readyState === 1) {
       if (req.user?.sub && !req.user.sub.startsWith("u_")) {
         try {
-          const userDoc = await User.findById(req.user.sub);
+          userDoc = await User.findById(req.user.sub);
           if (userDoc) profile = await ElderProfile.findOne({ user_id: userDoc._id }).exec();
         } catch(e) {}
       }
       if (!profile && userEmail) {
-        const u = await User.findOne({ email: userEmail });
-        if (u) profile = await ElderProfile.findOne({ user_id: u._id }).exec();
+        userDoc = await User.findOne({ email: userEmail });
+        if (userDoc) profile = await ElderProfile.findOne({ user_id: userDoc._id }).exec();
       }
       if (!profile && elderName) {
         profile = await ElderProfile.findOne({ name: new RegExp(`^${elderName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') }).exec();
       }
     }
 
+    const userNameFromDoc = userDoc ? ((userDoc.first_name ? `${userDoc.first_name} ${userDoc.last_name || ''}` : userDoc.name) || '').trim() : '';
+    const resolvedElderName = elderName || userNameFromDoc || profile?.name || "Senior";
+
+    // Keep profile name in sync if needed
+    if (profile && resolvedElderName && profile.name !== resolvedElderName && resolvedElderName !== 'Senior') {
+      try {
+        profile.name = resolvedElderName;
+        await profile.save();
+      } catch(e) {}
+    }
+
     const conditions = profile?.conditions || ["Diabetes", "Digestion"];
     const chewability = profile?.chewability || "Soft Meals";
     const cuisine = profile?.regional_cuisine || "South Indian Traditional";
-    const resolvedElderName = profile?.name || elderName || "Senior";
 
     // 2. Fetch today's logged meals
     const todayStr = new Date().toISOString().split('T')[0];
@@ -1890,23 +1901,34 @@ app.get("/api/elder/monthly-analysis", authenticate, async (req, res) => {
     const userEmail = (req.query.email || req.user?.email || "").trim().toLowerCase();
 
     let profile = null;
+    let userDoc = null;
     if (mongoose.connection.readyState === 1) {
       if (req.user?.sub && !req.user.sub.startsWith("u_")) {
         try {
-          const userDoc = await User.findById(req.user.sub);
+          userDoc = await User.findById(req.user.sub);
           if (userDoc) profile = await ElderProfile.findOne({ user_id: userDoc._id }).exec();
         } catch(e) {}
       }
       if (!profile && userEmail) {
-        const u = await User.findOne({ email: userEmail });
-        if (u) profile = await ElderProfile.findOne({ user_id: u._id }).exec();
+        userDoc = await User.findOne({ email: userEmail });
+        if (userDoc) profile = await ElderProfile.findOne({ user_id: userDoc._id }).exec();
       }
       if (!profile && elderName) {
         profile = await ElderProfile.findOne({ name: new RegExp(`^${elderName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') }).exec();
       }
     }
 
-    const resolvedElderName = profile?.name || elderName || "Senior";
+    const userNameFromDoc = userDoc ? ((userDoc.first_name ? `${userDoc.first_name} ${userDoc.last_name || ''}` : userDoc.name) || '').trim() : '';
+    const resolvedElderName = elderName || userNameFromDoc || profile?.name || "Senior";
+
+    // Keep profile name in sync if needed
+    if (profile && resolvedElderName && profile.name !== resolvedElderName && resolvedElderName !== 'Senior') {
+      try {
+        profile.name = resolvedElderName;
+        await profile.save();
+      } catch(e) {}
+    }
+
     const nameRegex = new RegExp(`^${resolvedElderName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i');
 
     // Fetch 30-day meals & activity
