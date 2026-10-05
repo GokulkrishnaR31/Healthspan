@@ -199,7 +199,12 @@ export default function Login() {
   const resolveUser = (inputIdentifier, role) => {
     const cleanId = (inputIdentifier || '').trim().toLowerCase().replace(/\s+/g, '');
     const registeredUsers = JSON.parse(localStorage.getItem('hs_registered_users') || '[]');
-    const matched = registeredUsers.find((u) => u.email === cleanId || (u.phone && u.phone.replace(/\s+/g, '') === cleanId));
+    const matched = registeredUsers.find((u) => 
+      (u.email && u.email.toLowerCase() === cleanId) || 
+      (u.phone && u.phone.replace(/\s+/g, '') === cleanId) ||
+      (u.care_code && u.care_code.toLowerCase() === cleanId) ||
+      (u.name && u.name.toLowerCase() === cleanId)
+    );
 
     if (matched) {
       return {
@@ -208,15 +213,107 @@ export default function Login() {
       };
     }
 
-    if (cleanId === 'gkeditz618@gmail.com' || cleanId === '7604948580' || cleanId === 'gkeditz618') {
+    // ── 4 Pre-seeded Elders ──
+    if (cleanId === '7604948580' || cleanId === 'deepan.kumar@healthspan.in' || cleanId === 'dp-5820' || cleanId === 'deepan') {
       return {
-        id: 'shanthi_' + Date.now(),
-        email: 'gkeditz618@gmail.com',
+        id: 'u_deepan_5820',
+        email: 'deepan.kumar@healthspan.in',
         phone: '7604948580',
+        pin: '5820',
+        care_code: 'DP-5820',
+        first_name: 'Deepan',
+        last_name: 'Kumar',
+        name: 'Deepan Kumar',
+        role: 'elder'
+      };
+    }
+    if (cleanId === '9444123456' || cleanId === 'shanthi.palani@healthspan.in' || cleanId === 'sp-7412' || cleanId === 'shanthi') {
+      return {
+        id: 'u_shanthi_7412',
+        email: 'shanthi.palani@healthspan.in',
+        phone: '9444123456',
+        pin: '7412',
+        care_code: 'SP-7412',
         first_name: 'Shanthi',
         last_name: 'Palani',
         name: 'Shanthi Palani',
-        role: role || 'elder',
+        role: 'elder'
+      };
+    }
+    if (cleanId === '9811123456' || cleanId === 'ramesh.verma@healthspan.in' || cleanId === 'rv-6391' || cleanId === 'ramesh') {
+      return {
+        id: 'u_ramesh_6391',
+        email: 'ramesh.verma@healthspan.in',
+        phone: '9811123456',
+        pin: '6391',
+        care_code: 'RV-6391',
+        first_name: 'Ramesh',
+        last_name: 'Verma',
+        name: 'Ramesh Verma',
+        role: 'elder'
+      };
+    }
+    if (cleanId === '9884123456' || cleanId === 'kalyani.s@healthspan.in' || cleanId === 'ks-4189' || cleanId === 'kalyani') {
+      return {
+        id: 'u_kalyani_4189',
+        email: 'kalyani.s@healthspan.in',
+        phone: '9884123456',
+        pin: '4189',
+        care_code: 'KS-4189',
+        first_name: 'Kalyani',
+        last_name: 'Sundaram',
+        name: 'Kalyani Sundaram',
+        role: 'elder'
+      };
+    }
+
+    // ── 4 Pre-seeded Caregivers ──
+    if (cleanId === '9876543210' || cleanId === 'priya.verma@healthspan.in' || cleanId === 'priya') {
+      return {
+        id: 'cg_priya_2580',
+        email: 'priya.verma@healthspan.in',
+        phone: '9876543210',
+        pin: '2580',
+        first_name: 'Priya',
+        last_name: 'Verma',
+        name: 'Priya Verma',
+        role: 'caregiver'
+      };
+    }
+    if (cleanId === '9876543211' || cleanId === 'arvind.doctor@healthspan.in' || cleanId === 'arvind' || cleanId === 'dr.arvind') {
+      return {
+        id: 'cg_arvind_3690',
+        email: 'arvind.doctor@healthspan.in',
+        phone: '9876543211',
+        pin: '3690',
+        first_name: 'Dr. Arvind',
+        last_name: 'Swaminathan',
+        name: 'Dr. Arvind Swaminathan',
+        role: 'caregiver'
+      };
+    }
+    if (cleanId === '9876543212' || cleanId === 'meera.nair@healthspan.in' || cleanId === 'meera') {
+      return {
+        id: 'cg_meera_1470',
+        email: 'meera.nair@healthspan.in',
+        phone: '9876543212',
+        pin: '1470',
+        first_name: 'Meera',
+        last_name: 'Nair',
+        name: 'Meera Nair',
+        role: 'caregiver'
+      };
+    }
+    if (cleanId === '9876543213' || cleanId === 'vikram.rao@healthspan.in' || cleanId === 'vikram') {
+      return {
+        id: 'cg_vikram_9510',
+        email: 'vikram.rao@healthspan.in',
+        phone: '9876543213',
+        pin: '9510',
+        first_name: 'Vikram',
+        last_name: 'Rao',
+        name: 'Vikram Rao',
+        role: 'caregiver'
       };
     }
 
